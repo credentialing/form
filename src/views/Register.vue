@@ -23,6 +23,7 @@ export default class Register extends Vue {
     console.log('beforemount');//eslint-disable-line
   };
   mounted(){
+
     console.log('mount');//eslint-disable-line
 
   };
