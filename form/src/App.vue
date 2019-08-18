@@ -1,6 +1,9 @@
 <template>
   <md-app id="app">
     <md-app-toolbar id="nav">
+      <md-avatar>
+        <img src="/avatar.png" alt="Globant" title="Globant">
+      </md-avatar>
       <router-link to="/login">Login</router-link> |
       <router-link to="/register">Register</router-link> |
       <router-link to="/list">List</router-link> |
@@ -24,14 +27,19 @@
 }
 #nav {
   padding: 30px;
+  .md-avatar {
+    margin: 0 20px 0 0;
+  }
   a {
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #bfd732;
     }
   }
 }
+
+
 </style>
 
 
