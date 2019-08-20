@@ -28,17 +28,22 @@
 }
 #nav {
   padding: 30px;
+  .md-avatar {
+    margin: 0 20px 0 0;
+  }
   a {
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #bfd732;
     }
     &:not(.logo) {
       padding:  0 10px;
     }
   }
 }
+
+
 </style>
 
 
