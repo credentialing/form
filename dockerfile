@@ -1,21 +1,15 @@
-FROM node:11.10.0
-
-RUN apt-get update && \
-      apt-get -y install sudo
-
-RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
-
-USER docker
-
-COPY ["package.json", "/usr/src"]
-
+FROM node:lts as build
 WORKDIR usr/src
+COPY . .
+RUN  npm install
+RUN npm run build
 
-RUN npm install
 
-COPY [".", "/usr/src"]
+FROM node:lts as prod
+WORKDIR usr/src
+COPY . .
+RUN  npm install
+RUN ls
+EXPOSE 8080
 
-EXPOSE 3001
-
-CMD [ "yarn", "serve" ]
-CMD [ "yarn", "start-api" ]
+CMD [ "npm", "start" ]
