@@ -24,10 +24,12 @@ export default class Login extends Vue {
   };
   mounted(){
     console.log('mount');//eslint-disable-line
+    localStorage.clear();
 
   };
   beforeUpdate() {
     console.log('beforeUpdate');//eslint-disable-line
+    // removeItem('userEmail');
   };
   updated(){
     console.log('updated');//eslint-disable-line
