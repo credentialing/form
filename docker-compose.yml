@@ -1,5 +1,13 @@
-version: '3'
+version: '3.7'
 services:
+  db:
+    build: 
+      context: ./db
+      dockerfile: dockerfile
+    container_name: intake-db
+    image: db
+    ports:
+    - "1433:1433"
   server:
     build: 
       context: ./server
@@ -8,6 +16,8 @@ services:
     container_name: intake-server
     ports:
     - "8001:8001"
+    depends_on:
+    - db
   app:
     build: .
     image: app
@@ -16,8 +26,6 @@ services:
     - "80:8080"
     depends_on:
     - server
+    - db
     links:
     - server
-
-
-  

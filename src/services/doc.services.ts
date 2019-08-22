@@ -2,7 +2,7 @@ class DocService {
   es: EventSource;
   
   constructor() {
-    this.es = new EventSource('https://api.local.quark.autodesk.com:8001/doc/events');
+    this.es = new EventSource('http://localhost:8001/doc/events');
     console.log(this.es)
     this.es.onmessage = (e: Event) => {
       debugger;

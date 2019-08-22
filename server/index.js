@@ -9,7 +9,7 @@ const controller = require('./form.controller');
 const sse = require('./form.sse');
 const server = express();
 const port = 8001;
-
+require('./db.connection');
 server.use(cors());
 server.get('/health', (req, res) => res.send(200));
 server.use('/doc/events', sse.getStream());

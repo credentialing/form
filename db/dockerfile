@@ -1,0 +1,5 @@
+FROM mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+
+COPY . .
+EXPOSE 1433
+CMD ["bash", "./start.sh"]; 
