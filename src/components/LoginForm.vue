@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form novalidate class="md-layout" @submit.prevent="validateUser">
+    <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
 
         <md-card-content>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+
   import { validationMixin } from 'vuelidate'
   import {
     required,
@@ -85,17 +86,28 @@
       },
       saveUser () {
         this.sending = true
-
-        // Instead of this timeout, here you can call your API
-        let form = this.form
-        window.setTimeout(() => {
+        this.$http.get('/login', {
+          params: {
+            email: this.form.email,
+            password: this.form.password
+          }
+        })
+        .then(() => {
           this.lastUser = `${form.email}`
           this.userSaved = true
           this.sending = false
           this.clearForm()
           localStorage.setItem('userEmail', form.email);
           this.$router.push('register')
-        }, 1500)
+        })
+        .catch((e) => {
+          setTimeout(() => {
+          this.$router.push('register');
+          this.sending = false
+        },1000)
+          console.log(e);
+        });
+
       },
       validateUser () {
         this.$v.$touch()

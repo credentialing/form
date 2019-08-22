@@ -1,45 +1,71 @@
 <template>
-  <div class="md-layout md-gutter">
-    <div class="md-layout-item">
-      <!-- begin table -->
-      <md-table md-card>
-        <md-table-toolbar>
-          <h1 class="md-title">Listing data</h1>
-        </md-table-toolbar>
+  <div id="credentialing" class=" md-alignment-top-center">
+    <md-table md-card>
+      <md-progress-bar md-mode="indeterminate" v-if="sending" />
+      <md-table-toolbar>
+        <h1 class="md-title">Registered credentials</h1>
+      </md-table-toolbar>
 
-        <md-table-row>
-          <md-table-head md-numeric>ID</md-table-head>
-          <md-table-head>Name</md-table-head>
-          <md-table-head>Email</md-table-head>
-          <md-table-head>Gender</md-table-head>
-          <md-table-head>Job Title</md-table-head>
-        </md-table-row>
+      <md-table-row class="md-table-row" v-for="credential in credentials" v-bind:key="credential" v-on:click="getCredentials">
+        <md-table-cell md-numeric>{{credential.id}}</md-table-cell>
+        <md-table-cell>{{credential.name}}</md-table-cell>
+        <md-table-cell>{{credential.email}}</md-table-cell>
+        <md-table-cell>{{credential.gender}}</md-table-cell>
+        <md-table-cell>{{credential.speciality}}</md-table-cell>
+      </md-table-row>
+    </md-table>
 
-        <md-table-row>
-          <md-table-cell md-numeric>1</md-table-cell>
-          <md-table-cell>Shawna Dubbin</md-table-cell>
-          <md-table-cell>sdubbin0@geocities.com</md-table-cell>
-          <md-table-cell>Male</md-table-cell>
-          <md-table-cell>Assistant Media Planner</md-table-cell>
-        </md-table-row>
-
-        <md-table-row>
-          <md-table-cell md-numeric>2</md-table-cell>
-          <md-table-cell>Odette Demageard</md-table-cell>
-          <md-table-cell>odemageard1@spotify.com</md-table-cell>
-          <md-table-cell>Female</md-table-cell>
-          <md-table-cell>Account Coordinator</md-table-cell>
-        </md-table-row>
-
-        <md-table-row>
-          <md-table-cell md-numeric>3</md-table-cell>
-          <md-table-cell>Vera Taleworth</md-table-cell>
-          <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-          <md-table-cell>Male</md-table-cell>
-          <md-table-cell>Community Outreach Specialist</md-table-cell>
-        </md-table-row>
-      </md-table>
-      <!-- end table-->
-    </div>
   </div>
 </template>
+
+
+<script>
+
+export default  {
+  name: 'Credentialing',
+  data: () => ({
+    // doctorName: 'Peter Tomson',
+    credentials: [{
+          id: 1,
+          name: 'Shawna Dubbin',
+          email: 'sdubbin0@geocities.com',
+          gender: 'Male',
+          speciality: 'ssistant Media Planner'
+        }, {
+          id: 2,
+          name: 'Odette Demageards',
+          email: 'odemageard1@spotify.com',
+          gender: 'Female',
+          speciality: 'Account Coordinator'
+        }, {
+          id: 3,
+          name: 'Vera Taleworth',
+          email: 'vtaleworth2@google.ca',
+          gender: 'Male',
+          speciality: 'Community Outreach Specialist'
+        }],
+    sending: false
+  }),
+  methods: {
+    getCredentials() {
+      this.sending = true
+      setTimeout(() => {
+        this.$router.push('view');
+        this.sending = false
+      },1000)
+    }
+  }
+}
+</script>
+<style lang="scss" scoped>
+  .md-table-row:hover {
+    cursor: pointer;
+  }
+  .md-progress-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+</style>
+

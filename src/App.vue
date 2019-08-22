@@ -1,13 +1,14 @@
 <template>
   <md-app id="app">
     <md-app-toolbar id="nav">
-      <img src="assets/globant.png" alt="Globant" title="Globant">
+
+      <img src="./assets/globant.png" class="logo" alt="Globant" title="Globant">
       
       <router-link to="/login">Login</router-link> |
       <router-link to="/register">Register</router-link> |
+      <router-link to="/list">List</router-link> |
       <router-link to="/view">View</router-link>
     </md-app-toolbar>
-       
 
     <md-app-content>
       <router-view />
@@ -28,22 +29,17 @@
 }
 #nav {
   padding: 30px;
-  .md-avatar {
-    margin: 0 20px 0 0;
-  }
   a {
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #bfd732;
+      color: #42b983;
     }
     &:not(.logo) {
       padding:  0 10px;
     }
   }
 }
-
-
 </style>
 
 
@@ -52,6 +48,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import DocService from './services/doc.services';
 import { Notifications, NotificationRequest} from './behavior/notification.bh';
+import Axios from 'axios'
+Vue.prototype.$http = Axios
 
 @Component({
   props: {
