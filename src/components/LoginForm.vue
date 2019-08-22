@@ -86,7 +86,7 @@
       },
       saveUser () {
         this.sending = true
-        this.$http.get('/login', {
+        this.$http.get(this.$apiUrl+'/health', {
           params: {
             email: this.form.email,
             password: this.form.password

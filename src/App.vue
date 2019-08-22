@@ -50,6 +50,7 @@ import DocService from './services/doc.services';
 import { Notifications, NotificationRequest} from './behavior/notification.bh';
 import Axios from 'axios'
 Vue.prototype.$http = Axios
+Vue.prototype.$apiUrl = 'http://localhost:8001'
 
 @Component({
   props: {

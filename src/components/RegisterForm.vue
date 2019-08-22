@@ -466,7 +466,7 @@ export default {
     },
     saveUser() {
       this.sending = true;
-      this.$http.post('/doc', {
+      this.$http.post(this.$apiUrl+'/doc', {
           ...this.form
         })
         .then(() => {
