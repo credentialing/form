@@ -51,11 +51,11 @@ sql.connect(config, function (err) {
       try {
 
         console.log(err)
-        console.log(recordset.recordset.length);
+        console.log(recordset);
       }catch (e){
         console.log(e)
       }
     });
     
-  }, 100) 
+  }, 10000) 
 });
