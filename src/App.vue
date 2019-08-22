@@ -1,15 +1,14 @@
 <template>
   <md-app id="app">
     <md-app-toolbar id="nav">
-      <md-avatar>
-        <img src="/avatar.png" alt="Globant" title="Globant">
-      </md-avatar>
+
+      <img src="./assets/globant.png" class="logo" alt="Globant" title="Globant">
+      
       <router-link to="/login">Login</router-link> |
       <router-link to="/register">Register</router-link> |
       <router-link to="/list">List</router-link> |
       <router-link to="/view">View</router-link>
     </md-app-toolbar>
-       
 
     <md-app-content>
       <router-view />
@@ -24,22 +23,23 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  .logo {
+    width: 100px;
+  }
 }
 #nav {
   padding: 30px;
-  .md-avatar {
-    margin: 0 20px 0 0;
-  }
   a {
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #bfd732;
+      color: #42b983;
+    }
+    &:not(.logo) {
+      padding:  0 10px;
     }
   }
 }
-
-
 </style>
 
 
@@ -48,6 +48,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import DocService from './services/doc.services';
 import { Notifications, NotificationRequest} from './behavior/notification.bh';
+import Axios from 'axios'
+Vue.prototype.$http = Axios
 
 @Component({
   props: {
@@ -57,6 +59,7 @@ import { Notifications, NotificationRequest} from './behavior/notification.bh';
 export default class App extends Vue {
   msg: String = '';
   computedString:String = this.msg;
+  userEmail: string | null = '';
   beforeCreate() {
     console.log('beforeCreateAPP');//eslint-disable-line
   };
@@ -81,6 +84,7 @@ export default class App extends Vue {
   };
   mounted(){
     console.log('mountAPP');//eslint-disable-line
+    this.userEmail = localStorage.getItem('userEmail');
 
   };
   beforeUpdate() {

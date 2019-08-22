@@ -16,6 +16,7 @@ services:
     container_name: intake-server
     ports:
     - "8001:8001"
+    - "443:443"
     depends_on:
     - db
   app:
@@ -23,9 +24,7 @@ services:
     image: app
     container_name: intake-app
     ports:
-    - "80:8080"
+    - "8080:8080"
     depends_on:
     - server
     - db
-    links:
-    - server

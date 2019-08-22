@@ -1,9 +1,12 @@
 <template>
   <div>
-    <form novalidate class="md-layout" @submit.prevent="validateUser">
+    <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateUser">
       <md-card class="md-layout-item md-size-80 md-medium-size-100">
         <md-card-header>
-          <div class="md-title">Data Intake</div>
+          <div class="md-title">
+            Data Intake
+            <md-button type="submit" v-on:click="fillFake" class="md-primary" :disabled="sending">Fill data</md-button>
+          </div>
         </md-card-header>
 
         <md-card-content>
@@ -303,9 +306,6 @@
 
       <md-snackbar :md-active.sync="userSaved">The data was saved with success!</md-snackbar>
     </form>
-    <pre>
-      {{ form }}
-    </pre>
   </div>
 </template>
 
@@ -353,7 +353,8 @@ export default {
     },
     userSaved: false,
     sending: false,
-    lastUser: null
+    lastUser: null,
+    single: null
   }),
   validations: {
     form: {
@@ -406,7 +407,6 @@ export default {
         required
       },
       certifyingBoard: {
-        required
       },
       certifications: {
         required
@@ -430,7 +430,7 @@ export default {
       this.form.practiceName = null;
       this.form.practiceAddress = null;
       this.form.practicePhone = null;
-      this.form.workingDays = [];
+      this.form.workingDays = null;
       this.form.workingHoursStart = null;
       this.form.workingHoursEnd = null;
       this.form.birthday = null;
@@ -439,21 +439,46 @@ export default {
       this.form.npiID = null;
       this.form.medicalSchool = null;
       this.form.degree = null;
-      this.form.yearAwarded = null;
+      this.form.yearAwarded  = null;
       this.form.certifyingBoard = null;
       this.form.certifications = null;
-      this.workingHours = [...Array(25).keys()];
+    },
+    fillFake(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.form.fullName = 'Peter Tomson';
+      this.form.address = 'Plaid Pantry, 1505 N Going St, Portland';
+      this.form.practiceName = 'Cardiologist';
+      this.form.practiceAddress = 'Plaid Pantry, 1505 N Going St, Portland';
+      this.form.practicePhone = '(238) 555-5555';
+      this.form.workingDays = [0,3];
+      this.form.workingHoursStart = 13;
+      this.form.workingHoursEnd = 20;
+      this.form.birthday = '1985-08-06';
+      this.form.majorProfActivity = 'Medical Teacher';
+      this.form.selfDesignedSp = 'Anatomic Pathology';
+      this.form.npiID = 555;
+      this.form.medicalSchool = 'Princeton';
+      this.form.degree = '90deg';
+      this.form.yearAwarded = '2001-08-06';
+      this.form.certifyingBoard = null;
+      this.form.certifications = 'CCMA,RBT,AVA';
     },
     saveUser() {
       this.sending = true;
-
-      // Instead of this timeout, here you can call your API
-      window.setTimeout(() => {
-        this.lastUser = `${this.form.fullName} ${this.form.address}`;
-        this.userSaved = true;
-        this.sending = false;
-        this.clearForm();
-      }, 1500);
+      this.$http.post('/doc', {
+          ...this.form
+        })
+        .then(() => {
+          this.userSaved = true;
+          this.sending = false;
+          this.clearForm();
+        })
+        .catch((e) => {
+          this.userSaved = true;
+          this.sending = false;
+          this.clearForm();
+        });
     },
     validateUser() {
       this.$v.$touch();
