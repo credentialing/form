@@ -11,288 +11,259 @@
 
         <md-card-content>
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('fullName')">
-              <label for="full-name">Full name</label>
+            <md-field :class="getValidationClass('ProviderName')">
+              <label for="provider-name">Provider name</label>
               <md-input
-                name="full-name"
-                id="full-name"
-                autocomplete="given-name"
-                v-model="form.fullName"
+                name="provider-name"
+                id="provider-name"
+                v-model="form.ProviderName"
                 :disabled="sending"
               />
-              <span class="md-error" v-if="!$v.form.fullName.required">The full name is required</span>
+              <span class="md-error" v-if="!$v.form.ProviderName.required">The provider name is required</span>
+            </md-field>
+            <md-field :class="getValidationClass('ProviderFIrstName')">
+              <label for="first-name">First name</label>
+              <md-input
+                name="first-name"
+                id="first-name"
+                autocomplete="given-name"
+                v-model="form.ProviderFIrstName"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.ProviderFIrstName.required">The full name is required</span>
+            </md-field>
+            <md-field >
+              <label for="mid-name">Middle name</label>
+              <md-input
+                name="mid-name"
+                id="mid-name"
+                v-model="form.ProviderMidName"
+                :disabled="sending"
+              />
+            </md-field>
+            <md-field :class="getValidationClass('ProviderLastName')">
+              <label for="last-name">Last name</label>
+              <md-input
+                name="last-name"
+                id="last-name"
+                autocomplete="given-name"
+                v-model="form.ProviderLastName"
+                :disabled="sending"
+              />
+              <span class="md-error" v-if="!$v.form.ProviderLastName.required">The last name is required</span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('birthday')">
-              <div class="md-layout md-gutter">
-                <div class="md-layout-item md-size-10">
-                  <label for="birthday">Birthday</label>
-                </div>
-                <div class="md-layout-item md-size-20">
-                  <md-datepicker v-model="form.birthday" id="birthday" name="birthday" />
-                  <span class="md-error" v-if="!$v.form.birthday.required">The birthday is required</span>
-                </div>
-              </div>
-            </md-field>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('address')">
-              <label for="address">Address</label>
+            <md-field :class="getValidationClass('PrimaryAddress1')">
+              <label for="address">Pimary Address</label>
               <md-input
                 name="address"
                 id="address"
                 autocomplete="address"
-                v-model="form.address"
+                v-model="form.PrimaryAddress1"
                 :disabled="sending"
                 type="address"
               />
-              <span class="md-error" v-if="!$v.form.address.required">Address is required</span>
+              <span class="md-error" v-if="!$v.form.PrimaryAddress1.required">Primary Address is required</span>
             </md-field>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('practiceName')">
-              <label for="practiceName">Practice name</label>
+            <md-field>
+              <label for="address">Pimary Address 2</label>
               <md-input
-                name="practiceName"
-                id="practiceName"
-                autocomplete="practice-name"
-                v-model="form.practiceName"
-                :disabled="sending"
-              />
-              <span class="md-error" v-if="!$v.form.practiceName.required">Practice name is required</span>
-            </md-field>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('practiceAddress')">
-              <label for="practiceAddress">Practice address</label>
-              <md-input
-                name="practiceAddress"
-                id="practiceAddress"
-                autocomplete="address"
-                v-model="form.practiceAddress"
+                name="address2"
+                id="address2"
+                autocomplete="address2"
+                v-model="form.PrimaryAddress2"
                 :disabled="sending"
                 type="address"
               />
+            </md-field>
+            <md-field :class="getValidationClass('PrimaryCity')">
+              <label for="PrimaryCity">Primary City</label>
+              <md-input 
+                v-model="form.PrimaryCity" 
+                id="PrimaryCity" 
+                name="PrimaryCity" />
+                <span
+                  class="md-error"
+                  v-if="!$v.form.PrimaryCity.required">
+                  The Primary City is required
+                </span>
+            </md-field>
+            
+            <md-field :class="getValidationClass('PrimaryState')">
+              <label for="PrimaryState">Primary State</label>
+              <md-input v-model="form.PrimaryState" id="PrimaryState" name="PrimaryState" />
               <span
                 class="md-error"
-                v-if="!$v.form.practiceAddress.required"
-              >Practice address is required</span>
+                v-if="!$v.form.PrimaryState.required">
+                The Primary State is required
+              </span>
+            </md-field>
+            
+            <md-field :class="getValidationClass('PrimaryZipCode')">
+              <label for="PrimaryZipCode">Primary ZipCode</label>
+              <md-input v-model="form.PrimaryZipCode" id="PrimaryZipCode" name="PrimaryZipCode" />
+                <span
+                  class="md-error"
+                  v-if="!$v.form.PrimaryZipCode.required">
+                  The Primary ZipCode is required
+                </span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('practicePhone')">
-              <label for="practicePhone">Practice phone</label>
+            <md-field :class="getValidationClass('PrimaryPhone')">
+              <label for="practicePhone">Primary phone</label>
               <md-input
                 name="practicePhone"
                 id="practicePhone"
                 autocomplete="phone"
-                v-model="form.practicePhone"
+                v-model="form.PrimaryPhone"
                 :disabled="sending"
                 type="phone"
               />
               <span
                 class="md-error"
-                v-if="!$v.form.practicePhone.required"
+                v-if="!$v.form.PrimaryPhone.required"
               >Practice phone is required</span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <div class="md-layout-item md-medium-size-100">
-              <md-field :class="getValidationClass('workingDays')">
-                <label for="workingDays">Practice days</label>
-                <span
-                  class="md-error"
-                  v-if="!$v.form.workingDays.required"
-                >Practice days are required</span>
-              </md-field>
-            </div>
-            <div class="md-layout md-gutter">
-              <div class="md-layout-item" v-for="day in form.workingDaysData" v-bind:key="day.id">
-                <md-checkbox
-                  :disabled="sending"
-                  v-model="form.workingDays"
-                  :value="day.id"
-                >{{day.text}}</md-checkbox>
-              </div>
-            </div>
-          </div>
-
-          <div class="md-layout md-gutter">
-            <div class="md-layout-item md-size-25">
-              <md-field :class="getValidationClass('workingHoursStart')">
-                <label for="workingHoursStart">Practice hours from</label>
-                <md-select
-                  v-model="form.workingHoursStart"
-                  name="workingHoursStart"
-                  id="workingHoursStart"
-                  :disabled="sending"
-                  autocomplete="practice-hours"
-                >
-                  <md-option
-                    v-for="hour in form.workingHours"
-                    v-bind:key="hour"
-                    :value="hour"
-                  >{{hour}}</md-option>
-                </md-select>
-                <span
-                  class="md-error"
-                  v-if="!$v.form.workingHoursStart.required"
-                >Practice hours start is required</span>
-              </md-field>
-            </div>
-
-            <div class="md-layout-item md-size-25">
-              <md-field :class="getValidationClass('workingHoursEnd')">
-                <label for="workingHoursEnd">Practice hours to</label>
-                <md-select
-                  v-model="form.workingHoursEnd"
-                  name="workingHoursEnd"
-                  id="workingHoursEnd"
-                  :disabled="sending"
-                  autocomplete="practice-hours"
-                >
-                  <md-option
-                    v-for="hour in form.workingHours"
-                    v-bind:key="hour"
-                    :value="hour"
-                  >{{hour}}</md-option>
-                </md-select>
-                <span
-                  class="md-error"
-                  v-if="!$v.form.workingHoursEnd.required"
-                >Practice hours end is required</span>
-              </md-field>
-            </div>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('majorProfActivity')">
-              <label for="majorProfActivity">Major professional activity</label>
+            <md-field :class="getValidationClass('MailingAddress1')">
+              <label for="address">Mailing Address</label>
               <md-input
-                name="majorProfActivity"
-                id="majorProfActivity"
-                autocomplete="majora-prof-activity"
-                v-model="form.majorProfActivity"
+                name="MailingAddress"
+                id="MailingAddress"
+                autocomplete="MailingAddress"
+                v-model="form.MailingAddress1"
                 :disabled="sending"
+                type="address"
               />
-              <span
-                class="md-error"
-                v-if="!$v.form.majorProfActivity.required"
-              >Major professional activity is required</span>
+              <span class="md-error" v-if="!$v.form.MailingAddress1.required">Mailing Address is required</span>
+            </md-field>
+            
+            <md-field>
+              <label for="address">Mailing Address 2</label>
+              <md-input
+                name="MailingAddress2"
+                id="MailingAddress2"
+                autocomplete="MailingAddress2"
+                v-model="form.MailingAddress2"
+                :disabled="sending"
+                type="address"
+              />
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('selfDesignedSp')">
-              <label for="selfDesignedSp">Self-designated speciality</label>
-              <md-input
-                name="selfDesignedSp"
-                id="selfDesignedSp"
-                autocomplete="self-designed-sp"
-                v-model="form.selfDesignedSp"
-                :disabled="sending"
-              />
+
+            <md-field :class="getValidationClass('MailingCity')">
+              <label for="MailingCity">Mailing City</label>
+              <md-input v-model="form.MailingCity" id="MailingCity" name="MailingCity" />
               <span
                 class="md-error"
-                v-if="!$v.form.selfDesignedSp.required"
-              >Self-designated speciality is required</span>
+                v-if="!$v.form.MailingCity.required">
+                The Mailing  City is required
+              </span>
+
+            </md-field>
+            
+            <md-field :class="getValidationClass('MailingState')">
+              <label for="MailingState">Mailin State</label>
+              <md-input v-model="form.MailingState" id="MailingState" name="MailingState" />
+              <span
+                class="md-error"
+                v-if="!$v.form.MailingState.required">
+                The Mailing State is required
+              </span>
+            </md-field>
+            
+            <md-field :class="getValidationClass('MailingZipCode')">
+              <label for="MailingZipCode">Mailing ZipCode</label>
+              <md-input v-model="form.MailingZipCode" id="MailingZipCode" name="MailingZipCode" />
+              <span
+                class="md-error"
+                v-if="!$v.form.MailingZipCode.required">
+                  The Mailing ZipCode is required
+                </span>
+
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('npiID')">
+            <md-field :class="getValidationClass('PrimaryActivity')">
+              <label for="PrimaryActivity">Primary  Activity</label>
+              <md-input v-model="form.PrimaryActivity" id="PrimaryActivity" name="PrimaryActivity" />
+              <span
+                 class="md-error"
+                  v-if="!$v.form.PrimaryActivity.required">
+                  The Mailing ZipCode is required
+              </span>
+            </md-field>
+            
+            <md-field :class="getValidationClass('Speciality')">
+              <label for="Speciality">Speciality</label>
+              <md-input v-model="form.Speciality" id="Speciality" name="Speciality" />
+              <span
+                class="md-error"
+                v-if="!$v.form.Speciality.required">
+                The Mailing ZipCode is required
+              </span>
+            </md-field>
+          </div>
+          <div class="md-layout-item md-medium-size-100">
+            <md-field :class="getValidationClass('NPI_ID')">
               <label for="npiID">NPI ID</label>
               <md-input
                 name="npiID"
                 id="npiID"
                 autocomplete="npi-id"
-                v-model="form.npiID"
+                v-model="form.NPI_ID"
                 :disabled="sending"
               />
-              <span class="md-error" v-if="!$v.form.npiID.required">NPI ID is required</span>
+              <span class="md-error" v-if="!$v.form.NPI_ID.required">NPI ID is required</span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('medicalSchool')">
+            <md-field :class="getValidationClass('MedicalSchool')">
               <label for="medicalSchool">Medical school</label>
               <md-input
                 name="medicalSchool"
                 id="medicalSchool"
                 autocomplete="medical-school"
-                v-model="form.medicalSchool"
+                v-model="form.MedicalSchool"
                 :disabled="sending"
               />
               <span
                 class="md-error"
-                v-if="!$v.form.medicalSchool.required"
+                v-if="!$v.form.MedicalSchool.required"
               >Medical school is required</span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('degree')">
+            <md-field :class="getValidationClass('Degree')">
               <label for="degree">Degree</label>
               <md-input
                 name="degree"
                 id="degree"
                 autocomplete="degree"
-                v-model="form.degree"
+                v-model="form.Degree"
                 :disabled="sending"
               />
-              <span class="md-error" v-if="!$v.form.degree.required">Degree is required</span>
+              <span class="md-error" v-if="!$v.form.Degree.required">Degree is required</span>
             </md-field>
           </div>
-
           <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('yearAwarded')">
+            <md-field :class="getValidationClass('YearAwarded')">
               <div class="md-layout md-gutter">
                 <div class="md-layout-item md-large-size-10 md-small-size-15 md-xsmall-size-20">
                   <label for="yearAwarded">Year awarded</label>
                 </div>
                 <div class="md-layout-item md-size-20">
-                  <md-datepicker v-model="form.yearAwarded" id="yearAwarded" name="yearAwarded" />
+                  <md-input v-model="form.YearAwarded" id="yearAwarded" name="yearAwarded" />
                   <span
                     class="md-error"
-                    v-if="!$v.form.yearAwarded.required"
+                    v-if="!$v.form.YearAwarded.required"
                   >The year awarded is required</span>
                 </div>
               </div>
-            </md-field>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('certifyingBoard')">
-              <label for="certifyingBoard">Certifying board</label>
-              <md-file v-model="single" />
-              <span
-                class="md-error"
-                v-if="!$v.form.certifyingBoard.required"
-              >Certifying board is required</span>
-            </md-field>
-          </div>
-
-          <div class="md-layout-item md-medium-size-100">
-            <md-field :class="getValidationClass('certifications')">
-              <label for="certifications">Certifications</label>
-              <md-input
-                name="certifications"
-                id="certifications"
-                autocomplete="certifications"
-                v-model="form.certifications"
-                :disabled="sending"
-              />
-              <span
-                class="md-error"
-                v-if="!$v.form.certifications.required"
-              >Certifications are required</span>
             </md-field>
           </div>
         </md-card-content>
@@ -323,33 +294,27 @@ export default {
   mixins: [validationMixin],
   data: () => ({
     form: {
-      fullName: null,
-      address: null,
-      practiceName: null,
-      practiceAddress: null,
-      practicePhone: null,
-      workingDays: [],
-      workingDaysData: [
-        { text: "Monday", id: 0 },
-        { text: "Tuesday", id: 1 },
-        { text: "Wednesday", id: 2 },
-        { text: "Thursday", id: 3 },
-        { text: "Friday", id: 4 },
-        { text: "Saturday", id: 5 },
-        { text: "Sunday", id: 6 }
-      ],
-      workingHours: [...Array(25).keys()],
-      workingHoursStart: null,
-      workingHoursEnd: null,
-      birthday: null,
-      majorProfActivity: null,
-      selfDesignedSp: null,
-      npiID: null,
-      medicalSchool: null,
-      degree: null,
-      yearAwarded: null,
-      certifyingBoard: null,
-      certifications: null
+      ProviderName: null,
+      ProviderFIrstName: null,
+      ProviderMidName: null,
+      ProviderLastName: null,
+      PrimaryAddress1: null,
+      PrimaryAddress2: null,
+      PrimaryPhone: null,
+      NPI_ID: null,
+      MedicalSchool: null,
+      Degree: null,
+      YearAwarded: null,
+      PrimaryCity: null,
+      PrimaryState: null,
+      PrimaryZipCode: null,
+      MailingAddress1: null,
+      MailingAddress2: null,
+      MailingCity: null,
+      MailingState: null,
+      MailingZipCode: null,
+      PrimaryActivity: null,
+      Speciality: null
     },
     userSaved: false,
     sending: false,
@@ -358,58 +323,66 @@ export default {
   }),
   validations: {
     form: {
-      fullName: {
+      ProviderName: {
         required,
         minLength: minLength(3)
       },
-      address: {
+      ProviderFIrstName: {
         required,
         minLength: minLength(3)
       },
-      practiceName: {
+      ProviderLastName: {
         required,
         minLength: minLength(3)
       },
-      practiceAddress: {
+      PrimaryAddress1: {
+        required,
+        minLength: minLength(3)
+      },
+      PrimaryPhone: {
         required
       },
-      practicePhone: {
+      NPI_ID: {
         required
       },
-      workingDays: {
+      MedicalSchool: {
         required
       },
-      workingHoursStart: {
+      Degree: {
         required
       },
-      workingHoursEnd: {
+      YearAwarded: {
         required
       },
-      birthday: {
+      PrimaryCity: {
         required
       },
-      majorProfActivity: {
+      PrimaryState: {
         required
       },
-      selfDesignedSp: {
+      PrimaryZipCode: {
         required
       },
-      npiID: {
+      MailingCity: {
         required
       },
-      medicalSchool: {
+      MailingState: {
         required
       },
-      degree: {
+      MailingZipCode: {
         required
       },
-      yearAwarded: {
+      Speciality: {
         required
       },
-      certifyingBoard: {
-      },
-      certifications: {
+      MailingAddress1:  {
         required
+      },
+      MailingAddress2:  {
+        required
+      },
+      PrimaryActivity: {
+       required
       }
     }
   },
@@ -425,48 +398,55 @@ export default {
     },
     clearForm() {
       this.$v.$reset();
-      this.form.fullName = null;
-      this.form.address = null;
-      this.form.practiceName = null;
-      this.form.practiceAddress = null;
-      this.form.practicePhone = null;
-      this.form.workingDays = null;
-      this.form.workingHoursStart = null;
-      this.form.workingHoursEnd = null;
-      this.form.birthday = null;
-      this.form.majorProfActivity = null;
-      this.form.selfDesignedSp = null;
-      this.form.npiID = null;
-      this.form.medicalSchool = null;
-      this.form.degree = null;
-      this.form.yearAwarded  = null;
-      this.form.certifyingBoard = null;
-      this.form.certifications = null;
+      this.form.ProviderName = null;
+      this.form.ProviderFIrstName = null;
+      this.form.ProviderMidName = null;
+      this.form.ProviderLastName = null;
+      this.form.PrimaryAddress1 = null;
+      this.form.PrimaryAddress2 = null;
+      this.form.NPI_ID = null;
+      this.form.MedicalSchool = null;
+      this.form.Degree = null;
+      this.form.YearAwarded  = null;
+      this.form.PrimaryCity  = null;
+      this.form.PrimaryState  = null;
+      this.form.PrimaryZipCode  = null;
+      this.form.MailingAddress1  = null;
+      this.form.MailingAddress2  = null;
+      this.form.MailingCity  = null;
+      this.form.MailingState  = null;
+      this.form.MailingZipCode  = null;
+      this.form.PrimaryActivity  = null;
+      this.form.Speciality  = null;
     },
     fillFake(event) {
       event.preventDefault();
       event.stopPropagation();
-      this.form.fullName = 'Peter Tomson';
-      this.form.address = 'Plaid Pantry, 1505 N Going St, Portland';
-      this.form.practiceName = 'Cardiologist';
-      this.form.practiceAddress = 'Plaid Pantry, 1505 N Going St, Portland';
-      this.form.practicePhone = '(238) 555-5555';
-      this.form.workingDays = [0,3];
-      this.form.workingHoursStart = 13;
-      this.form.workingHoursEnd = 20;
-      this.form.birthday = '1985-08-06';
-      this.form.majorProfActivity = 'Medical Teacher';
-      this.form.selfDesignedSp = 'Anatomic Pathology';
-      this.form.npiID = 555;
-      this.form.medicalSchool = 'Princeton';
-      this.form.degree = '90deg';
-      this.form.yearAwarded = '2001-08-06';
-      this.form.certifyingBoard = null;
-      this.form.certifications = 'CCMA,RBT,AVA';
+      this.form.ProviderName = 'Provider Name';
+      this.form.ProviderFIrstName = 'Peter';
+      this.form.ProviderMidName = 'Michael';
+      this.form.ProviderLastName = 'Tomson';
+      this.form.PrimaryAddress1 = 'Plaid Pantry';
+      this.form.PrimaryAddress2 = '1505 N Going St';
+      this.form.PrimaryPhone = '(238) 555-5555';
+      this.form.NPI_ID = 555;
+      this.form.MedicalSchool = 'Princeton';
+      this.form.Degree = '90deg';
+      this.form.YearAwarded = '2001-08-06';
+      this.form.PrimaryCity = 'Boston';
+      this.form.PrimaryState = 'Washington';
+      this.form.PrimaryZipCode = '90210',
+      this.form.MailingAddress1 = 'Plaid Pantry',
+      this.form.MailingAddress2 = '1505 N Going St',
+      this.form.MailingCity = 'Boston';
+      this.form.MailingState = 'Washington';
+      this.form.MailingZipCode = '90210',
+      this.form.PrimaryActivity = 'Cardiologist',
+      this.form.Speciality = 'Cardiologist'
     },
     saveUser() {
       this.sending = true;
-      this.$http.post(this.$apiUrl+'/doc', {
+      this.$http.post(this.$apiUrl+'/providers', {
           ...this.form
         })
         .then(() => {
@@ -497,5 +477,8 @@ export default {
   top: 0;
   right: 0;
   left: 0;
+}
+.d-none {
+  display: none;
 }
 </style>

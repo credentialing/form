@@ -82,9 +82,7 @@ export default  {
 
       DEAOrderDate: '2001-09-06',
       DEAOrder:  '--  --'
-
-    }
-        
+    }  
   }),
   methods: {
   }
