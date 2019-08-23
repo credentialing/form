@@ -77,33 +77,33 @@ export default  {
   data: () => ({
     doctorName: 'Peter Tomson',
     credentials: {
-      PrimaryActivity: 'Medical Teacher',
-      NPI_ID: '555-555',
-      NPI_Status: 'Active',
-      EnumerationDate: '2001-08-06',
+      PrimaryActivity: '',
+      NPI_ID: '',
+      NPI_Status: '',
+      EnumerationDate: '',
 
-      LicenseState: 'Washington',
-      LicenseNum:  '333-333',
+      LicenseState: '',
+      LicenseNum:  '',
 
-      Specialty: 'Cardiologist',
-      SubSpecialty: 'Anatomic Pathology',
+      Specialty: '',
+      SubSpecialty: '',
 
-      DEA_OrderDate: '2001-09-06',
-      DEA_Order:  '--  --'
+      DEA_OrderDate: '',
+      DEA_Order:  ''
     }
   }),
   methods: {
-    getCredentials(providerId) {
-      this.sending = true
-        this.$http.get(this.$apiUrl + '/cred/' + providerId)
-        .then((res) => {
-          this.sending = false
-          this.credentials = res.data
-        })
-        .catch((e) => {
-          this.sending = false
-          console.log(e);
-        });
+    async getCredentials(providerId) {
+      this.sending = true 
+      const res = await this.$http.get(this.$apiUrl + '/cred/' + providerId);
+      this.sending = false
+      this.credentials = res.data[0] || {}
+      console.log(this, res.data);
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      this.getCredentials(this.$router.history.current.query.id);
     }
   },
   mounted(){
