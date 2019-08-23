@@ -80,7 +80,8 @@ export default class App extends Vue {
         clickCB: () => {
           self.$router.push({ name: 'view', params: { data }, query: {id: data.cvId} })
         }
-      } as NotificationRequest)
+      } as NotificationRequest);
+      self.$router.push({ name: 'view', params: { data }, query: {id: data.cvId} })
     }
   };
   mounted(){

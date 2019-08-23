@@ -33,13 +33,14 @@ export class Notifications {
     await requestAccess();
   }
 
-  notify({
+  async notify({
     title = "Update",
     message = "Your Cv has been processed",
     clickCB = () => {
       console.log('notification click'); //eslint-disable-line
     }
   }: NotificationRequest) {
+    await requestAccess();
     const notification = new Notification(title, {
       body: message,
       requireInteraction: false
