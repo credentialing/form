@@ -75,10 +75,10 @@ export default class App extends Vue {
       const notification = new Notifications();
 
       notification.notify({ 
-        title: `Updated ${event.lastEventId}`,
-        message: `CV ${event.lastEventId} processed`,
+        title: `Click to view`,
+        message: `Provider credential checked`,
         clickCB: () => {
-          self.$router.push({ name: 'view', params: { data }, query: {id: event.lastEventId} })
+          self.$router.push({ name: 'view', params: { data }, query: {id: data.cvId} })
         }
       } as NotificationRequest)
     }
