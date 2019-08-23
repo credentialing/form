@@ -4,8 +4,12 @@
 
     <div class="md-layout md-gutter" md-card>
       <div class="md-layout-item">
-        <h2>Primary Activity: <span>{{credentials.PrimaryActivity}}</span></h2>
+        <h2>General Info</h2>
         <md-table md-card>
+          <md-table-row>
+            <md-table-cell class="align-right">Primary Activity:: </md-table-cell>
+            <md-table-cell>{{credentials.PrimaryActivity}}</md-table-cell>
+          </md-table-row>
           <md-table-row>
             <md-table-cell class="align-right">NPI: </md-table-cell>
             <md-table-cell>{{credentials.NPI_ID}}</md-table-cell>
@@ -37,8 +41,12 @@
         <h2>Knowledge Area</h2>
         <md-table md-card>
           <md-table-row>
-            <md-table-cell>Specialty: <span>{{credentials.Specialty}}</span></md-table-cell>
-            <md-table-cell>Sub Specialty: <span>{{credentials.SubSpecialty}}</md-table-cell>
+            <md-table-cell class="align-right">Specialty:</md-table-cell>
+            <md-table-cell>{{credentials.Specialty}}</md-table-cell>
+          </md-table-row>
+          <md-table-row>
+            <md-table-cell class="align-right">Sub Specialty:</md-table-cell>
+            <md-table-cell>{{credentials.SubSpecialty}}</md-table-cell>
           </md-table-row>
         </md-table>
       </div>
