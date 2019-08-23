@@ -8,11 +8,11 @@ COPY . usr/src/app
 
 WORKDIR usr/src/app
 
-ENV PORT=8080
+ENV PORT=433
 ENV NODE_ENV=production
 
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE ${PORT}
 
 CMD [ "npm", "start" ]

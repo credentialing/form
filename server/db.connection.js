@@ -14,7 +14,7 @@ const prepareStatement = Provider => {
 const processError = (e) => {
   console.log(e);
   console.error('Connection fail, system will exit');
-  process.exit(0);
+  // process.exit(0);
 }
 class Connection {
   constructor () {

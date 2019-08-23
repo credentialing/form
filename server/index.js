@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const server = express();
 const port = 8001;
 server.use(cors());
-server.use(bodyParser());
+server.use(bodyParser.json());
 server.get('/health', (req, res) => res.send(200));
 server.use('/doc/events', sse.getStream());
 server.use('/cred', credController);

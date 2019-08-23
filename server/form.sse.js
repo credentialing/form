@@ -1,13 +1,16 @@
 const SSE = require('express-sse');
 const dbConnection = require('./db.connection');
 const _EVENTS_ = {
-  UPDATED: 'UPDATED'
+  UPDATED: 'UPDATED',
+  PING: 'PING'
 }
 class FormSSE {
   constructor() {
     this.stream = new SSE([]);
     this.check();
-    setTimeout( _ => this.pulling, 4000);
+    setTimeout( _ => this.pulling(), 4000);
+    this.ping();
+    setInterval( _ => this.ping(), 15000);
 
   }
 
@@ -20,6 +23,10 @@ class FormSSE {
   check() {
     this.lastCheck = Date.now();
   }
+  ping() {
+    this.stream.send({}, _EVENTS_.PING);
+  }
+
   docComplete(objectInfo) {
     this.stream.send(objectInfo, _EVENTS_.UPDATED);
   }
@@ -28,6 +35,7 @@ class FormSSE {
 
     this.ids = await this.updateCurrent();
     setTimeout(async () => {
+      console.log('Running notification process');
       let ids = await this.updateCurrent();
       const id = ids.find( providerId => !this.ids.includes(providerId));
       this.ids = ids;
