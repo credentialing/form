@@ -244,7 +244,7 @@
                 <span class="md-error" v-if="!$v.form.NPI_ID.required">NPI ID is required</span>
               </md-field>
             </div>
-            <div class="md-layout-item md-size-20">
+            <div class="md-layout-item md-size-30">
               <md-field :class="getValidationClass('Degree')">
                 <label for="degree">Degree</label>
                 <md-input
