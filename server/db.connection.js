@@ -9,7 +9,7 @@ const config = {
 
 const prepareStatement = Provider => {
   
-  return `INSERT INTO Provider (ProviderID, ProviderName, ProviderFIrstName, ProviderMidName, ProviderLastName, PrimaryAddress1, PrimaryAddress2, PrimaryCity, PrimaryState, PrimaryZipCode, PrimaryPhone, MailingAddress1, MailingAddress2, MailingCity, MailingState, MailingZipCode, PrimaryActivity, Speciality, NPI_ID, MedicalSchool, Degree, YearAwarded ) VALUES ('${Provider.ProviderID}', '${Provider.ProviderName}', '${Provider.ProviderFIrstName}', '${Provider.ProviderMidName}','${Provider.ProviderLastName}','${Provider.PrimaryAddress1}','${Provider.PrimaryAddress2}','${Provider.PrimaryCity}','${Provider.PrimaryState}','${Provider.PrimaryZipCode}','${Provider.PrimaryPhone}','${Provider.MailingAddress1}','${Provider.MailingAddress2}','${Provider.MailingCity}','${Provider.MailingState}','${Provider.MailingZipCode}','${Provider.PrimaryActivity}','${Provider.Speciality}','${Provider.NPI_ID}','${Provider.MedicalSchool}','${Provider.Degree}','${Provider.YearAwarded}')`;
+  return `INSERT INTO Provider (ProviderID, ProviderName, ProviderFIrstName, ProviderMidName, ProviderLastName, PrimaryAddress1, PrimaryAddress2, PrimaryCity, PrimaryState, PrimaryZipCode, PrimaryPhone, MailingAddress1, MailingAddress2, MailingCity, MailingState, MailingZipCode, PrimaryActivity, Speciality, NPI_ID, MedicalSchool, Degree, YearAwarded ) VALUES (${Provider.ProviderID}, '${Provider.ProviderName}', '${Provider.ProviderFIrstName}', '${Provider.ProviderMidName}','${Provider.ProviderLastName}','${Provider.PrimaryAddress1}','${Provider.PrimaryAddress2}','${Provider.PrimaryCity}','${Provider.PrimaryState}','${Provider.PrimaryZipCode}','${Provider.PrimaryPhone}','${Provider.MailingAddress1}','${Provider.MailingAddress2}','${Provider.MailingCity}','${Provider.MailingState}','${Provider.MailingZipCode}','${Provider.PrimaryActivity}','${Provider.Speciality}','${Provider.NPI_ID}','${Provider.MedicalSchool}','${Provider.Degree}','${Provider.YearAwarded}')`;
 }
 const processError = (e) => {
   console.log(e);
@@ -46,7 +46,6 @@ class Connection {
       await transaction.begin();
   
       const request = new sql.Request(transaction);
-    
       await request.query(parser(object));
   
       const commit = await transaction.commit();

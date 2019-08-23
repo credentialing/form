@@ -18,50 +18,9 @@ router.get('/:id',  async (req, res, next) => {
 router.post('/',  async  (req, res, next) => {
   const providerCount = await dbConnection.query('select count( * ) as count from Provider');
   const count = providerCount[0].count;
-  const insert = await dbConnection.insert({
-    ProviderID: count,
-    ProviderName: '',
-    ProviderFIrstName: '',
-    ProviderMidName: '',
-    ProviderLastName: '',
-    PrimaryAddress1: '',
-    PrimaryAddress2: '',
-    NPI_ID: '',
-    MedicalSchool: '',
-    Degree: '',
-    YearAwarded : '',
-    PrimaryCity : '',
-    PrimaryState : '',
-    MailingAddress1: '',
-    MailingAddress2: '',
-    MailingCity: '',
-    MailingState: '',
-    MailingZipCode: '',
-    PrimaryActivity: '',
-    Speciality: ''
-  });
-  res.status(201).json({
-    ProviderID: count,
-    ProviderName: '',
-    ProviderFIrstName: '',
-    ProviderMidName: '',
-    ProviderLastName: '',
-    PrimaryAddress1: '',
-    PrimaryAddress2: '',
-    NPI_ID: '',
-    MedicalSchool: '',
-    Degree: '',
-    YearAwarded : '',
-    PrimaryCity : '',
-    PrimaryState : '',
-    MailingAddress1: '',
-    MailingAddress2: '',
-    MailingCity: '',
-    MailingState: '',
-    MailingZipCode: '',
-    PrimaryActivity: '',
-    Speciality: ''
-  });
+  const provider = { ProviderID: count, ...req.body};
+  const insert = await dbConnection.insert(provider);
+  res.status(201).json(provider);
 });
 
 module.exports = router;

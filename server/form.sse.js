@@ -7,7 +7,7 @@ class FormSSE {
   constructor() {
     this.stream = new SSE([]);
     this.check();
-    this.pulling();
+    setTimeout( _ => this.pulling, 4000);
 
   }
 

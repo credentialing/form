@@ -8,11 +8,11 @@
         <md-table md-card>
           <md-table-row>
             <md-table-cell class="align-right">NPI: </md-table-cell>
-            <md-table-cell>{{credentials.NPI}}</md-table-cell>
+            <md-table-cell>{{credentials.NPI_ID}}</md-table-cell>
           </md-table-row>
           <md-table-row>
             <md-table-cell class="align-right">NPI Status: </md-table-cell>
-            <md-table-cell>{{credentials.NPIStatus}}</md-table-cell>
+            <md-table-cell>{{credentials.NPI_Status}}</md-table-cell>
           </md-table-row>
           <md-table-row>
             <md-table-cell class="align-right">Enumeration Date: </md-table-cell>
@@ -47,11 +47,11 @@
         <md-table md-card>
           <md-table-row>
             <md-table-cell class="align-right">DEA Order: </md-table-cell>
-            <md-table-cell>{{credentials.DEAOrder}}</md-table-cell>
+            <md-table-cell>{{credentials.DEA_Order}}</md-table-cell>
           </md-table-row>
           <md-table-row>
             <md-table-cell class="align-right">DEA Order Date: </md-table-cell>
-            <md-table-cell>{{credentials.DEAOrderDate}}</md-table-cell>
+            <md-table-cell>{{credentials.DEA_OrderDate}}</md-table-cell>
           </md-table-row>
         </md-table>
       </div>
@@ -70,8 +70,8 @@ export default  {
     doctorName: 'Peter Tomson',
     credentials: {
       PrimaryActivity: 'Medical Teacher',
-      NPI: '555-555',
-      NPIStatus: 'Active',
+      NPI_ID: '555-555',
+      NPI_Status: 'Active',
       EnumerationDate: '2001-08-06',
 
       LicenseState: 'Washington',
@@ -80,13 +80,30 @@ export default  {
       Specialty: 'Cardiologist',
       SubSpecialty: 'Anatomic Pathology',
 
-      DEAOrderDate: '2001-09-06',
-      DEAOrder:  '--  --'
-    }  
+      DEA_OrderDate: '2001-09-06',
+      DEA_Order:  '--  --'
+    }
   }),
   methods: {
+    getCredentials(providerId) {
+      this.sending = true
+        this.$http.get(this.$apiUrl + '/cred/' + providerId)
+        .then((res) => {
+          this.sending = false
+          this.credentials = res.data
+        })
+        .catch((e) => {
+          this.sending = false
+          console.log(e);
+        });
+    }
+  },
+  mounted(){
+    this.getCredentials(this.$router.history.current.query.id);
+    
   }
 }
+
 </script>
 <style lang="scss" scoped>
 h2 b{

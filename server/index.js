@@ -8,13 +8,15 @@ var certificate = fs.readFileSync('certs/cert.pem');
 const credController = require('./cred.controller');
 const providerController = require('./provider.controller');
 const sse = require('./form.sse');
+const bodyParser = require('body-parser');
 const server = express();
 const port = 8001;
 server.use(cors());
+server.use(bodyParser());
 server.get('/health', (req, res) => res.send(200));
 server.use('/doc/events', sse.getStream());
 server.use('/cred', credController);
-server.use('/provider', providerController);
+server.use('/providers', providerController);
 
 const credentials = {key: privateKey, cert: certificate, passphrase: '1234'};
 

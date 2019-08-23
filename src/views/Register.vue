@@ -23,23 +23,19 @@ export default class Register extends Vue {
     console.log('beforemount');//eslint-disable-line
   };
   mounted(){
-
     console.log('mount');//eslint-disable-line
-
   };
   beforeUpdate() {
     console.log('beforeUpdate');//eslint-disable-line
   };
   updated(){
     console.log('updated');//eslint-disable-line
-
   };
   beforeDestroy() {
     console.log('beforeDestroy');//eslint-disable-line
   };
   destroyed(){
     console.log('destroyed');//eslint-disable-line
-
   };
   get computed(): String {
     return ''
